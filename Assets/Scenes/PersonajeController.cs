@@ -1,12 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;//Bibliotecas
+using UnityEngine;
 
-public class Movi : MonoBehaviour
-{   
+public class PersonajeController : MonoBehaviour
+{
     float movimientoH;
     public Rigidbody2D rb;
     public float velocidad;
+    public float velocidadSalto;
     public float horizontal;
     public float vertical; 
     bool enelaire = false;
@@ -33,7 +34,7 @@ public class Movi : MonoBehaviour
         
        if (Input.GetKeyDown(KeyCode.W) && enelaire == false)
         {
-            rb.AddForce(Vector2.up * velocidad, ForceMode2D.Impulse);
+            rb.AddForce(Vector2.up * velocidadSalto, ForceMode2D.Impulse);
             enelaire = true;
         }
         
@@ -89,5 +90,4 @@ public class Movi : MonoBehaviour
     }
 }
  
-        
-}   
+}

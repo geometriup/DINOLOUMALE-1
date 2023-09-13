@@ -42,7 +42,17 @@ public class Proyectil : MonoBehaviour
         // other.gameObject.GetComponent<ComportamientoEnemigo>().Vidas--;
  
          //Destruimos el objeto cuando colisione contra un enemigo
-         Destroy(gameObject);
+          Destroy(gameObject);
       }
+      //Destroy(gameObject);
+      //Debug.Log("destruccion");
+      
    }
+
+   private void OnCollisionEnter2D(Collision2D other)
+   {
+       Destroy(gameObject);
+      Debug.Log("destruccion");
+   }
+
 }

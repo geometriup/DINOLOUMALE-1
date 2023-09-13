@@ -7,6 +7,9 @@ using System;
 public class Disparo : MonoBehaviour
 {
     public GameObject FireballPrefab;
+    public Transform tBala;
+
+    public float offset;
     // Start is called before the first frame update
     void Start()
     {
@@ -16,6 +19,8 @@ public class Disparo : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+         float offsetBala = offset;
+
         if (FireballPrefab != null && Input.GetButtonDown("Fire1"))
       {
          //Accedemos al script 'ArmaArrojadiza.cs' del prefab
@@ -38,17 +43,21 @@ public class Disparo : MonoBehaviour
             //Ataque hacia la derecha
             scriptFireball.DireccionArma = Direccion.Horizontal;
             scriptFireball.Velocidad = Math.Abs(scriptFireball.Velocidad);
+            offsetBala = offset;
          }
          else if (Input.GetAxis("Horizontal") < 0)
          {
             //Ataque hacia la izquierda
             scriptFireball.DireccionArma = Direccion.Horizontal;
             scriptFireball.Velocidad = -Math.Abs(scriptFireball.Velocidad);
+            offsetBala = offset * -1;
          }
  
+         //FireballPrefab.transform.position = pj.transform.position + new Vector3(offset, 0, 0); 
          //Creamos una instancia del prefab en nuestra escena, concretamente en la posición de nuestro personaje
-         Instantiate(FireballPrefab, transform.position, Quaternion.identity);
+         Instantiate(FireballPrefab, transform.position + new Vector3(offsetBala, 0, 0), Quaternion.identity);
       }
    
     }
+
 }
